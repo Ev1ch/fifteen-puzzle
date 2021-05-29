@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="wclassth=device-wclassth, initial-scale=1.0" />
+        <title>Fifteen puzzle</title>
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,400;0,500;0,700;1,400&display=swap"
+            rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link
+            href="https://fonts.googleapis.com/css2?family=Rubik&family=Ubuntu:ital,wght@0,400;0,500;0,700;1,400&display=swap"
+            rel="stylesheet">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
+            integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+        <link rel="stylesheet" href="css/normalize.css" />
+        <link rel="stylesheet" href="css/main.css" />
+        <link rel="stylesheet" href="css/responsible.css" />
+    </head>
+
+    <body>
+        <div class="app">
+            <div class="container">
+                <section class="section introduction">
+                    <h1 class="introduction__header">Fifteen puzzle <i class="fas fa-border-all"></i></h1>
+                    <div class="introduction-guide">
+                        <div class="introduction-guide__subheader">How to play:</div>
+                        <div class="introduction-guide__step">
+                            <p>To slide numbers you can click on cell you want to move or use keys: A, W, D and S</p>
+                        </div>
+                        <div class="introduction-guide__step">
+                            <p> Slide numbers left or right</p>
+                        </div>
+                        <div class="introduction-guide__step">
+                            <p>Slide numbers up or down</p>
+                        </div>
+                        <div class="introduction-guide__step">
+                            <p> Put them in order and come out a winner!
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section game">
+                    <div class="panel">
+                        <div class="panel__reset panel__button">
+                            <span><i class="fas fa-undo panel__icon"></i> Reset</span>
+                        </div>
+                        <div class="panel__shuffle panel__button">
+                            <span><i class="fas fa-random panel__icon"></i> Shuffle</span>
+                        </div>
+                        <div class="panel__hint panel__button">
+                            <span><i class="fas fa-bolt panel__icon"></i> Hint</span>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <script type="module" src="js/main.js"></script>
+    </body>
+
+</html>

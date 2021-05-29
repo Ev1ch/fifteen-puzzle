@@ -1,0 +1,228 @@
+/**
+ * Базові змінні
+*/
+:root {
+    --animation-time: 0.5s;
+}
+
+
+/**
+ * Базові стилі
+*/
+body {
+    font-family: 'Ubuntu';
+    color: #264653;
+    background: #e9c46a;
+}
+
+.app {
+    overflow: auto;
+    min-height: 100vh;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.section {
+    margin: 4.5rem 0;
+}
+
+
+/**
+ * Стилі інструкції
+*/
+.introduction {
+    text-align: center;
+}
+
+.introduction__header {
+    font-size: 4rem;
+    margin-top: 0;
+    margin-bottom: 2rem;
+}
+
+.introduction-guide {
+    gap: 3rem;
+    margin: 0;
+    padding: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+
+.introduction-guide__step {
+    font-weight: 700;
+    display: block;
+    padding: 1rem 2rem;
+    border-radius: 30px;
+    color: #fff;
+    -webkit-transition: var(--animation-time);
+    -o-transition: var(--animation-time);
+    transition: var(--animation-time);
+    background: #e76f51;
+}
+
+.introduction-guide__step:hover {
+    cursor: pointer;
+    -webkit-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    transform: scale(1.1);
+}
+
+.introduction-guide__step p {
+    margin: 0;
+}
+
+.introduction-guide__subheader {
+    padding: 1rem 2rem;
+    font-weight: 700;
+    font-size: 2rem;
+}
+
+
+/**
+ * Стилі ігрового поля
+*/
+.game {
+    position: relative;
+    gap: 3rem;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.board {
+    border-radius: 10px;
+    position: relative;
+    width: 440px;
+    height: 440px;
+    background: #264653;
+}
+
+.board__cell {
+    cursor: pointer;
+    border-radius: 10px;
+    position: absolute;
+    -webkit-transition: var(--animation-time);
+    -o-transition: var(--animation-time);
+    transition: var(--animation-time);
+    color: #fff;
+    width: 25%;
+    height: 25%;
+    font-size: 40px;
+    font-weight: 700;
+    font-family: sans-serif;
+    line-height: 110px;
+    text-align: center;
+    z-index: 2;
+}
+
+.board__cell span {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    font-family: 'Rubik';
+}
+
+/* Стилі для пустої клітинки */
+.board__cell[data-index='16'] {
+    z-index: 1;
+    border: none;
+    background: rgba(0, 0, 0, 0);
+}
+
+
+/**
+ * Стилі панелі
+*/
+.panel {
+    align-items: center;
+    justify-content: center;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.panel__button {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-transition: var(--animation-time);
+    -o-transition: var(--animation-time);
+    transition: var(--animation-time);
+    cursor: pointer;
+    overflow: hidden;
+    text-align: center;
+    position: relative;
+    border-radius: 10px;
+    font-weight: 700;
+    padding: 1rem 2rem;
+    color: #fff;
+    background: #2a9d8f;
+}
+
+.panel__button span {
+    position: relative;
+    z-index: 2;
+}
+
+.panel__button::before {
+    z-index: 1;
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    left: 100%;
+    background: #264653;
+    -webkit-transition: var(--animation-time);
+    -o-transition: var(--animation-time);
+    transition: var(--animation-time);
+}
+
+.panel__button:hover::before {
+    left: 0;
+}
+
+.panel__icon {
+    transition: var(--animation-time);
+    margin-right: 5px;
+}
+
+.panel__reset:hover .panel__icon {
+    transform: rotate(-180deg);
+}
+
+.panel__shuffle:hover .panel__icon {
+    transform: rotate(-90deg);
+}
+
+.panel__hint:hover .panel__icon {
+    transform: rotate(-30deg);
+}

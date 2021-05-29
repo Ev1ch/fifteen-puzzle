@@ -1,0 +1,23 @@
+@media (max-width: 568px) {
+    .container {
+        width: 95%;
+    }
+
+    .board {
+        width: 400px;
+        height: 400px;
+    }
+}
+
+@media (max-width: 768px) {
+    .introduction-guide {
+        gap: 1rem;
+    }
+
+    .panel {
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+        flex-direction: row;
+    }
+}

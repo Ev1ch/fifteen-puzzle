@@ -28,7 +28,7 @@ export class BoardModel {
     updateCells() {
         for (let i = 0; i < 16; i++) {
             const cell = this.cells.find(
-                (cell) => cell.index === this.state[i],
+                (cell) => cell.getIndex() === this.state[i],
             );
             cell.move(i + 1);
         }
@@ -42,8 +42,8 @@ export class BoardModel {
      */
     updateState() {
         for (let i = 0; i < 16; i++) {
-            const cell = this.cells.find((cell) => cell.position === i + 1);
-            this.state[i] = cell.index;
+            const cell = this.cells.find((cell) => cell.getPosition() === i + 1);
+            this.state[i] = cell.getIndex();
         }
     }
 
@@ -54,13 +54,14 @@ export class BoardModel {
     isSolvable(state = this.state) {
         const emptyCellPosition = state.indexOf(16) + 1;
         const emptyCellRow = Math.ceil(emptyCellPosition / 4);
+        const inversionsNumber = this.getInversionsNumber(state);
 
         if ((4 - emptyCellRow + 1) % 2 === 0) {
-            if (this.getInversionsNumber(state) % 2 === 1) {
+            if (inversionsNumber % 2 === 1) {
                 return true;
             }
         } else if ((4 - emptyCellRow + 1) % 2 === 1) {
-            if (this.getInversionsNumber(state) % 2 === 0) {
+            if (inversionsNumber % 2 === 0) {
                 return true;
             }
         }
@@ -78,8 +79,9 @@ export class BoardModel {
 
         for (let i = 0; i < 15; i++) {
             for (let j = i + 1; j < 16; j++) {
-                if (state[i] > state[j] && state[j] !== 16 && state[i] !== 16)
+                if (state[i] > state[j] && state[i] !== 16 && state[j] !== 16) {
                     inversionsNumber++;
+                }
             }
         }
 
@@ -209,7 +211,7 @@ export class BoardModel {
      * у переданому напрямку
      */
     move(direction, cellIndex) {
-        const emptyCell = this.cells.find((element) => element.index === 16);
+        const emptyCell = this.cells.find((cell) => cell.getIndex() === 16);
         const emptyCellPosition = emptyCell.getPosition();
         let cellToMove;
 
@@ -258,7 +260,9 @@ export class BoardModel {
      */
     isSolved(state = this.state) {
         for (let i = 0; i < 16; i++) {
-            if (state[i] !== i + 1) return false;
+            if (state[i] !== i + 1) {
+                return false;
+            }
         }
 
         return true;

@@ -7,11 +7,11 @@ export class BoardCellView {
      * відносно дошки
      */
     updateOffsets(cell) {
-        const offsetY = (4 - cell.row) * 25;
-        const offsetX = (cell.column - 1) * 25;
+        const offsetX = (cell.getColumn() - 1) * 25;
+        const offsetY = (4 - cell.getRow()) * 25;
 
-        cell.offsetX = offsetX;
-        cell.offsetY = offsetY;
+        cell.setOffsetX(offsetX);
+        cell.setOffsetY(offsetY);
     }
 
     
@@ -24,13 +24,13 @@ export class BoardCellView {
      */
     update(cell) {
         const block = document.querySelector(
-            `.board__cell[data-index="${cell.index}"]`,
+            `.board__cell[data-index="${cell.getIndex()}"]`,
         );
 
         this.updateOffsets(cell);
 
-        block.style.left = cell.offsetX + '%';
-        block.style.bottom = cell.offsetY + '%';
+        block.style.left = cell.getOffsetX() + '%';
+        block.style.bottom = cell.getOffsetY() + '%';
     }
 
     /**
@@ -41,9 +41,9 @@ export class BoardCellView {
         this.updateOffsets(cell);
 
         const blockTemplate = `
-        <div class="board__cell" data-index="${cell.index}" style="left: ${cell.offsetX}%; bottom: ${cell.offsetY}%;">
+        <div class="board__cell" data-index="${cell.getIndex()}" style="left: ${cell.getOffsetX()}%; bottom: ${cell.getOffsetY()}%;">
             <span>
-                ${cell.index === 16 ? '' : cell.index}
+                ${cell.getIndex() === 16 ? '' : cell.getIndex()}
             </span>
         </div>
         `;

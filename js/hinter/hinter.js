@@ -9,18 +9,20 @@ export class Hinter {
      * дерево станів з
      * певною глибиною
      */
-    treeBuild(tree, currentParent, depth) {
-        const children = currentParent.getChildren();
+    treeBuild(tree, currentNode, depth) {
+        const children = currentNode.getChildren();
 
-        if (depth + 1 <= 5)
-            for (const state of this.getAvailableStates(currentParent.value)) {
+        if (depth + 1 <= 5) {
+            const availableStates = this.getAvailableStates(currentNode.value);
+
+            for (const state of availableStates) {
                 if (
-                    JSON.stringify(currentParent.getParent().value) !==
+                    JSON.stringify(currentNode.getParent().value) !==
                     JSON.stringify(state)
                 ) {
                     tree.addNode(
-                        currentParent,
-                        new Node({ value: [...state], parent: currentParent }),
+                        currentNode,
+                        new Node({ value: [...state], parent: currentNode }),
                     );
                     this.treeBuild(
                         tree,
@@ -29,7 +31,9 @@ export class Hinter {
                     );
                 }
             }
-        else return;
+        } else {
+            return;
+        }
     }
 
     /**
@@ -42,6 +46,7 @@ export class Hinter {
 
         for (const path of root.getChildren()) {
             const pathValidity = this.findPathValidity(path);
+
             paths.push({
                 value: path.getValue(),
                 validity: pathValidity,
@@ -59,14 +64,18 @@ export class Hinter {
      * переданого шляху
      */
     findPathValidity(path) {
-        if (this.board.isSolved(path.getValue())) return 1;
+        if (this.board.isSolved(path.getValue())) {
+            return 1;
+        }
 
         const possibleEndings = [];
         this.findPathValidities(path, possibleEndings);
         let maxValidity = 0;
 
         for (const ending of possibleEndings) {
-            if (ending.validity > maxValidity) maxValidity = ending.validity;
+            if (ending.validity > maxValidity) {
+                maxValidity = ending.validity;
+            }
         }
 
         return maxValidity;
@@ -78,15 +87,15 @@ export class Hinter {
      * всіх кінцівок
      * переданого шляху
      */
-    findPathValidities(currentParent, possibleEndings) {
-        if (this.board.isSolved(currentParent.getValue())) {
+    findPathValidities(currentNode, possibleEndings) {
+        if (this.board.isSolved(currentNode.getValue())) {
             return possibleEndings.push({
-                value: currentParent.getValue(),
-                validity: this.board.getValidity(currentParent.getValue()),
+                value: currentNode.getValue(),
+                validity: this.board.getValidity(currentNode.getValue()),
             });
         }
 
-        for (const child of currentParent.getChildren()) {
+        for (const child of currentNode.getChildren()) {
             if (child.getChildren().length === 0) {
                 const value = child.getValue();
                 const validity = this.board.getValidity(child.getValue());
@@ -139,6 +148,7 @@ export class Hinter {
         return availableStates;
     }
 
+    
     // Інтерфейс
     constructor(boardModel) {
         this.board = boardModel;

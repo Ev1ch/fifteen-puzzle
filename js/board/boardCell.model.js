@@ -52,6 +52,42 @@ export class BoardCellModel {
     }
 
     /**
+     * Сеттер для 
+     * відступу по осі Х
+     * клітинки
+     */
+     setOffsetX(offsetX) {
+        this.offsetX = offsetX;
+    }
+
+    /**
+     * Геттер для 
+     * відступу по осі Х
+     * клітинки
+     */
+     getOffsetX() {
+        return this.offsetX;
+    }
+
+    /**
+     * Сеттер для 
+     * відступу по осі Y
+     * клітинки
+     */
+     setOffsetY(offsetY) {
+        this.offsetY = offsetY;
+    }
+
+    /**
+     * Геттер для 
+     * відступу по осі У
+     * клітинки
+     */
+     getOffsetY() {
+        return this.offsetY;
+    }
+
+    /**
      * Метод, що служить
      * для руху клітинки 
      * (оновлення її поля 

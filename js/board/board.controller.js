@@ -26,7 +26,9 @@ export class BoardController {
         else if (keyName ===  'KeyD' && this.model.move('right')) {
             this.log.addState(this.model.getState());
         }
-        else return;
+        else {
+            return;
+        } 
 
         this.view.update(this.model.getCells());
     }
@@ -119,8 +121,12 @@ export class BoardController {
      * потрібний момент
      */
     isSolvedHandler(event) {
-        if (this.model.isSolved()) this.view.highlight();
-        else this.view.lowerlight();
+        if (this.model.isSolved()) {
+            this.view.highlight();
+        }
+        else {
+            this.view.lowerlight()
+        };
     }
 
 

@@ -12,7 +12,7 @@ export class Hinter {
     treeBuild(tree, currentNode, depth) {
         const children = currentNode.getChildren();
 
-        if (depth + 1 <= 5) {
+        if (depth + 1 <= 10) {
             const availableStates = this.getAvailableStates(currentNode.value);
 
             for (const state of availableStates) {

@@ -17,12 +17,16 @@ export class Hinter {
 
             for (const state of availableStates) {
                 if (
-                    JSON.stringify(currentNode.getParent().value) !==
+                    currentNode === tree.getRoot() ||
+                    JSON.stringify(currentNode.getParent().getValue()) !==
                     JSON.stringify(state)
                 ) {
                     tree.addNode(
                         currentNode,
-                        new Node({ value: [...state], parent: currentNode }),
+                        new Node({ 
+                            value: [...state], 
+                            parent: currentNode 
+                        }),
                     );
                     this.treeBuild(
                         tree,

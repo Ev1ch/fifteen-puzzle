@@ -5,7 +5,7 @@ export class Tree {
     constructor(options) {
         this.root = new Node({
             value: options.root,
-            parent: [],
+            parent: null,
         });
     }
 

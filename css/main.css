@@ -155,11 +155,16 @@ body {
  * Стилі панелі
 */
 .panel {
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
+    -ms-flex-wrap: wrap;
     flex-wrap: wrap;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
@@ -211,18 +216,26 @@ body {
 }
 
 .panel__icon {
+    -webkit-transition: var(--animation-time);
+    -o-transition: var(--animation-time);
     transition: var(--animation-time);
     margin-right: 5px;
 }
 
 .panel__reset:hover .panel__icon {
+    -webkit-transform: rotate(-180deg);
+    -ms-transform: rotate(-180deg);
     transform: rotate(-180deg);
 }
 
 .panel__shuffle:hover .panel__icon {
+    -webkit-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
     transform: rotate(-90deg);
 }
 
 .panel__hint:hover .panel__icon {
+    -webkit-transform: rotate(-30deg);
+    -ms-transform: rotate(-30deg);
     transform: rotate(-30deg);
 }

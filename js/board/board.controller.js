@@ -76,6 +76,15 @@ export class BoardController {
 
     /**
      * Відслідковувач натиснень
+     * кнопки "Save"
+     */
+    saveHandler(event) {
+        const state = this.model.getState();
+        this.saveState(state);
+    }
+
+    /**
+     * Відслідковувач натиснень
      * на клітинки
      */
     cellClickHandler(event) {
@@ -104,6 +113,10 @@ export class BoardController {
             .querySelector('.panel__hint')
             .addEventListener('click', this.hintHandler.bind(this));
 
+        document
+            .querySelector('.panel__save')
+            .addEventListener('click', this.saveHandler.bind(this));
+
         const cellsBlocks = document.querySelectorAll('.board__cell');
 
         for (const cellBlock of cellsBlocks) {
@@ -129,6 +142,24 @@ export class BoardController {
         };
     }
 
+    /**
+     * Метод, що слугує 
+     * для зберігання 
+     * стану дошки
+     */
+    saveState(state){
+        window.localStorage.setItem('boardState', state)
+    }
+
+     /**
+     * Метод, що слугує 
+     * для завантаження
+     * стану дошки
+     */
+    loadState() {
+        return window.localStorage.getItem('boardState').split(',').map(cellNumber => +cellNumber);
+    }
+
 
     // Інтерфейс
     constructor() {
@@ -138,10 +169,18 @@ export class BoardController {
         this.log = new BoardLog();
         this.hinter = new Hinter(this.model);
 
+        if (window.localStorage.getItem('boardState')) {
+            const state = this.loadState();
+            this.model.setState(state);
+            this.model.updateCells();
+        }         
+        
         this.log.addState(this.model.getState());
-
         this.view.render(this.root, this.model.getCells());
-        this.view.highlight();
+
+        if (this.model.isSolved()) {
+            this.view.highlight();
+        }
 
         document.addEventListener('keypress', this.keypressHandler.bind(this));
         this.initClickHandlers();

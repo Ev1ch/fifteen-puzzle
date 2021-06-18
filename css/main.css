@@ -239,3 +239,9 @@ body {
     -ms-transform: rotate(-30deg);
     transform: rotate(-30deg);
 }
+
+.panel__save:hover .panel__icon {
+    -webkit-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    transform: scale(1.1);
+}
